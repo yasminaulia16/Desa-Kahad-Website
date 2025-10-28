@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desa Kahad - Provinsi Aceh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2E8B57;
+            --secondary: #3CB371;
+            --accent: #9ACD32;
+            --teal: #20B2AA;
+            --purple: #66CDAA;
+            --light: #F5FFF5;
+            --dark: #2F4F4F;
+            --transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--teal) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f0f8f0 0%, #e0f0e0 100%);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, var(--primary), var(--secondary)) border-box;
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transition);
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 3px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, var(--primary), var(--secondary)) border-box;
+            box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+            transition: var(--transition);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        .logo:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 25px rgba(46, 139, 87, 0.4);
+        }
+
+        .site-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Navigation - IMPROVED */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--secondary);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 5px;
+            border-radius: 10px;
+            z-index: 1001;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 15px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: var(--transition);
+            z-index: -1;
+            border-radius: 15px;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .nav-links a:hover::before {
+            left: 0;
+        }
+
+        .nav-links a.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(46, 139, 87, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(60, 179, 113, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(154, 205, 50, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #f5fff5 0%, #e8f5e8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 0 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: var(--dark);
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 35px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.1rem;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary);
+            border: 3px solid var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 5px;
+        }
+
+        /* Gallery Styles - IMPROVED */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 300px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(46, 139, 87, 0.2), rgba(60, 179, 113, 0.2));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            transform: translateY(100%);
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, var(--primary), var(--secondary)) border-box;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--teal));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .info-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 15px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transition: var(--transition);
+        }
+
+        .info-card:hover .card-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, var(--teal), var(--purple));
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .card-text {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark), #1a3a2a);
+            color: white;
+            padding: 60px 0 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--teal));
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 35px;
+            margin-bottom: 35px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent), var(--teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid #4a5568;
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .animate-fade-in-left {
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .animate-fade-in-right {
+            animation: fadeInRight 1s ease-out;
+        }
+
+        /* Responsive Design - IMPROVED */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .nav-links {
+                gap: 10px;
+            }
+            
+            .nav-links a {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .nav-toggle {
+                display: block;
+                position: relative;
+                top: 0;
+                right: 0;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                background: white;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 20px 0;
+                box-shadow: var(--shadow);
+                border-radius: 0 0 20px 20px;
+                gap: 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 15px 20px;
+                border-radius: 0;
+                justify-content: center;
+            }
+
+            .nav-links a:hover {
+                transform: none;
+                background: linear-gradient(135deg, var(--primary), var(--secondary));
+                color: white;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .btn-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .info-card {
+                padding: 25px 20px;
+            }
+            
+            .card-icon {
+                font-size: 3rem;
+                padding: 12px;
+            }
+            
+            .site-title {
+                font-size: 1.5rem;
+            }
+            
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="logonya.png" alt="Logo Desa Kahad" class="logo">
+                    <div class="site-title">
+                        Desa Kahad<br>Provinsi Aceh
+                    </div>
+                </div>
+                <button class="nav-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="active"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="#profil"><i class="fas fa-info-circle"></i> Profil Desa</a></li>
+                    <li><a href="#galeri"><i class="fas fa-images"></i> Galeri</a></li>
+                    <li><a href="#berita"><i class="fas fa-newspaper"></i> Berita</a></li>
+                    <li><a href="#informasi"><i class="fas fa-info-circle"></i> Informasi</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Mempererat Hubungan Antar Warga</h1>
+            <p class="hero-subtitle">
+                "Rasa sikap saling tolong menolong dan kekeluargaan, membina hubungan baik antar sesama, 
+                mempererat silaturahmi, dan yang terpenting adalah menciptakan rasa persatuan dan kesatuan 
+                di lingkungan masyarakat Desa Kahad."
+            </p>
+            <div class="btn-container">
+                <a href="#profil" class="btn btn-primary animate-fade-in-left">
+                    <i class="fas fa-map-marked-alt"></i> Jelajahi Desa
+                </a>
+                <a href="#galeri" class="btn btn-secondary animate-fade-in-right">
+                    <i class="fas fa-images"></i> Lihat Galeri
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profil Desa Section -->
+    <section class="section" id="profil">
+        <div class="container">
+            <h2 class="section-title">Profil Desa Kahad</h2>
+            <div class="info-cards">
+                <div class="info-card animate-fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="card-icon">🏞️</div>
+                    <h3 class="card-title">Keindahan Alam</h3>
+                    <p class="card-text">
+                        Desa Kahad dikelilingi oleh pemandangan alam yang menakjubkan dengan 
+                        perpaduan antara persawahan hijau dan pegunungan yang menjulang tinggi.
+                    </p>
+                </div>
+                <div class="info-card animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="card-icon">👨‍👩‍👧‍👦</div>
+                    <h3 class="card-title">Kebersamaan Warga</h3>
+                    <p class="card-text">
+                        Masyarakat Desa Kahad dikenal dengan sikap gotong royong yang tinggi 
+                        dan selalu menjaga tali silaturahmi antar sesama warga.
+                    </p>
+                </div>
+                <div class="info-card animate-fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="card-icon">🌾</div>
+                    <h3 class="card-title">Potensi Ekonomi</h3>
+                    <p class="card-text">
+                        Desa Kahad memiliki berbagai potensi ekonomi unggulan seperti pertanian, 
+                        perkebunan, dan kerajinan tangan khas Aceh.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Section -->
+    <section class="section" id="galeri" style="background: linear-gradient(135deg, #f0f8f0 0%, #e0f0e0 100%);">
+        <div class="container">
+            <h2 class="section-title">Galeri Desa Kahad</h2>
+            <div class="gallery">
+                <div class="gallery-item animate-fade-in-up" style="animation-delay: 0.1s;">
+                    <img src="alam.jpg" alt="Pemandangan Desa">
+                    <div class="gallery-caption">
+                        <h4>Pemandangan Alam</h4>
+                        <p>Keindahan alam Desa Kahad yang memukau</p>
+                    </div>
+                </div>
+                <div class="gallery-item animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <img src="kerja.jpg" alt="Kegiatan Warga">
+                    <div class="gallery-caption">
+                        <h4>Kegiatan Warga</h4>
+                        <p>Gotong royong membersihkan lingkungan desa</p>
+                    </div>
+                </div>
+                <div class="gallery-item animate-fade-in-up" style="animation-delay: 0.3s;">
+                    <img src="tani.jpg" alt="Pertanian">
+                    <div class="gallery-caption">
+                        <h4>Hasil Pertanian</h4>
+                        <p>Produk pertanian unggulan Desa Kahad</p>
+                    </div>
+                </div>
+                <div class="gallery-item animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <img src="wisa.jpg" alt="Wisata">
+                    <div class="gallery-caption">
+                        <h4>Wisata Alam</h4>
+                        <p>Destinasi wisata menarik di desa kami</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Informasi Lainnya Section -->
+    <section class="section" id="informasi">
+        <div class="container">
+            <h2 class="section-title">Informasi Lainnya</h2>
+            <div class="info-cards">
+                <div class="info-card animate-fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="card-icon">📊</div>
+                    <h3 class="card-title">Data & Statistik</h3>
+                    <p class="card-text">
+                        Akses data terkini tentang kependudukan, ekonomi, dan perkembangan 
+                        pembangunan di Desa Kahad.
+                    </p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 20px; padding: 12px 25px;">
+                        <i class="fas fa-chart-bar"></i> Lihat Data
+                    </a>
+                </div>
+                <div class="info-card animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="card-icon">📰</div>
+                    <h3 class="card-title">Berita Terkini</h3>
+                    <p class="card-text">
+                        Update berita dan kegiatan terbaru dari Desa Kahad. Selalu pantau 
+                        perkembangan desa kami.
+                    </p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 20px; padding: 12px 25px;">
+                        <i class="fas fa-newspaper"></i> Baca Berita
+                    </a>
+                </div>
+                <div class="info-card animate-fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="card-icon">🏛️</div>
+                    <h3 class="card-title">Layanan Publik</h3>
+                    <p class="card-text">
+                        Informasi mengenai berbagai layanan publik yang tersedia untuk 
+                        masyarakat Desa Kahad.
+                    </p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 20px; padding: 12px 25px;">
+                        <i class="fas fa-hands-helping"></i> Lihat Layanan
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Desa Kahad</h3>
+                    <p>Desa yang penuh dengan keindahan alam dan kebersamaan warga yang harmonis di Provinsi Aceh.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Tautan Cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-arrow-right"></i> Beranda</a></li>
+                        <li><a href="#profil"><i class="fas fa-arrow-right"></i> Profil Desa</a></li>
+                        <li><a href="#galeri"><i class="fas fa-arrow-right"></i> Galeri</a></li>
+                        <li><a href="#informasi"><i class="fas fa-arrow-right"></i> Informasi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontak Kami</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:+62651123456"><i class="fas fa-phone"></i> (0651) 123456</a></li>
+                        <li><a href="mailto:info@desakahad.ac.id"><i class="fas fa-envelope"></i> info@desakahad.ac.id</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Jl. Desa Kahad, Aceh</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Desa Kahad - Provinsi Aceh. Semua Hak Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Update active nav link based on scroll position
+            updateActiveNavLink();
+        });
+
+        // Mobile navigation toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            
+            // Change icon
+            const icon = navToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        const navItems = document.querySelectorAll('.nav-links a');
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                const icon = navToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                
+                // Update active nav link
+                navItems.forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Function to update active nav link based on scroll position
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const elementsToAnimate = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right');
+            elementsToAnimate.forEach(el => {
+                el.style.opacity = '0';
+                if (el.classList.contains('animate-fade-in-up')) {
+                    el.style.transform = 'translateY(30px)';
+                } else if (el.classList.contains('animate-fade-in-left')) {
+                    el.style.transform = 'translateX(-30px)';
+                } else if (el.classList.contains('animate-fade-in-right')) {
+                    el.style.transform = 'translateX(30px)';
+                }
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
